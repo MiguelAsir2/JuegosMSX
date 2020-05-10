@@ -1,0 +1,11 @@
+<!-- Formulario para buscar el nombre del juego, boton buscar -->
+{% extends "base.html" %}
+{%block titulo%}Buscar Juegos{%endblock%}
+{%block contenido%}
+    <form action=/listajuegos method="post">
+        <label>Nombre o Palabra Clave:</label>
+        <input type="text" name="cadena"/>
+        <input type="submit" value="Enviar"/>
+        <a href="/">Volver</a>
+    </form>
+{%endblock%}

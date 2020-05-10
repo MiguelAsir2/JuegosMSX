@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+{%block contenido%}
+<table class="egt">
+    <tr>
+    <th>NOMBRE</th>
+    <th>DESARROLLADOR</th>
+    <th>DETALLE</th>
+    </tr>
+    {%for i in range(0,contar) -%}
+        {% if nombre in datos[i].nombre %}
+            <p>hola</p>
+        {% endif %}
+    {% endfor -%}
+    <a href="/juegos">Volver</a>
+{% endblock %}
