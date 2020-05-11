@@ -6,10 +6,12 @@
     <th>DESARROLLADOR</th>
     <th>DETALLE</th>
     </tr>
-    {%for i in range(0,contar) -%}
-        {% if nombre in datos[i].nombre %}
-            <p>hola</p>
-        {% endif %}
-    {% endfor -%}
-    <a href="/juegos">Volver</a>
+    {%for dato in datos%}
+        <tr>
+        <td>{{dato.nombre}}</td>
+        <td>{{dato.desarrollador}}</td>
+        <td><a href="/juego/{{dato.id}}">Detalle</a></td>
+        </tr>
+    {%endfor%}
+    <a href="/buscajuegos">Volver</a>
 {% endblock %}
