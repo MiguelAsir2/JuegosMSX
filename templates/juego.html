@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %} Juegos {% endblock %}
+{% block contenido %}
+    {% for dato in datos %}
+        <h1>Nombre: {{dato.nombre}}</h1>
+        <h1>Sistema: {{dato.sistema}}</h1>
+        <h1>Distribuidor: {{dato.distribuidor}}</h1>
+        <h1>Desarrollador: {{dato.desarrollador}}</h1>
+        <h1>Categoria: {{dato.categoria}}</h1>
+        <h1>Año: {{dato.año}}</h1>
+        <a href="/juegos">Volver</a>
+    {% endfor%}
+
+{% endblock%}
