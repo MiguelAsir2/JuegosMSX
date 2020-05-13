@@ -10,18 +10,26 @@ with open("MSX.json") as fichero:
 def inicio():
     return render_template("inicio.html")
 
-@app.route('/juegos',methods=["GET"])
+#Mejora 1: Búsqueda en una ruta
+@app.route('/juegos',methods=["GET","POST"])
 def juegos():
-    return render_template("buscajuegos.html")
-
-@app.route('/listajuegos',methods=["POST"])
-def listajuegos():
-    nombre=request.form["cadena"]
-    lista_juegos=[]
-    for dato in datos:
-        if nombre in str(dato["nombre"]):
-            lista_juegos.append(dato)
-    return render_template("listajuegos.html",datos=lista_juegos,nombre=nombre)
+    if request.method=="GET":
+        categoria=[]
+        for dato in datos:
+            if dato["categoria"] not in categoria:
+                categoria.append(dato["categoria"])
+        return render_template("buscajuegos.html",categoria=categoria)
+    else:
+        nombre=request.form["cadena"]
+        lista_juegos=[]
+        todos_juegos=[]
+        categoria=[]
+        for dato in datos:
+            todos_juegos.append(dato)
+            if nombre in str(dato["nombre"]) and dato["categoria"] not in categoria :
+                lista_juegos.append(dato)
+                categoria.append(dato["categoria"])
+        return render_template("buscajuegos.html",datos=lista_juegos,nombre=nombre,todo=todos_juegos,categoria=categoria)
 
 @app.route('/juego/<id>')
 def juego(id):
@@ -29,9 +37,6 @@ def juego(id):
     for dato in datos:
         if id == str(dato["id"]):
             juego.append(dato)
-            return render_template("juego.html",datos=juego)
-        else:
-            return abort(404)
-        
+    return render_template("juego.html",datos=juego)
 
 app.run(debug=True)

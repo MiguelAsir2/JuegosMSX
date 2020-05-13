@@ -1,11 +1,39 @@
-<!-- Formulario para buscar el nombre del juego, boton buscar -->
+<!-- Formulario -->
 {% extends "base.html" %}
 {%block titulo%}Buscar Juegos{%endblock%}
 {%block contenido%}
-    <form action=/listajuegos method="post">
+    <!--Mejora 2: Recodar datos del formulario-->
+    <form action=/juegos method="post">
         <label>Nombre o Palabra Clave:</label>
-        <input type="text" name="cadena"/>
+        <input type="text" name="cadena" value="{{nombre}}" autofocus/>
+        <select name="Categoria">
+            {% for cat in categoria %}
+            <option value="{{cat}}" selected="selected">{{cat.title()}}</option>
+            {% endfor%}
+        </select>
         <input type="submit" value="Enviar"/>
         <a href="/">Volver</a>
     </form>
+<!-- Listado de Juegos -->
+<table class="egt">  
+<tr>
+    <th>NOMBRE</th>
+    <th>DESARROLLADOR</th>
+    <th>DETALLE</th>
+</tr>
+{%for dato in datos%}
+    {% if nombre!=""%} 
+        <tr>
+            <td>{{dato.nombre}}</td>
+            <td>{{dato.desarrollador}}</td>
+            <td><a href="/juego/{{dato.id}}">Detalles</a></td>
+        </tr>
+    {% else %}
+        <tr>
+            <td>{{dato.nombre}}</td>
+            <td>{{dato.desarrollador}}</td>
+            <td><a href="/juego/{{dato.id}}">Detalles</a></td>
+        </tr>
+    {% endif%}   
+{% endfor %}
 {%endblock%}
