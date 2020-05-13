@@ -1,8 +1,8 @@
 from flask import Flask,render_template,abort,request
 app= Flask(__name__)
+import os
 
 import json
-import os
 with open("MSX.json") as fichero:
     datos=json.load(fichero)
 
