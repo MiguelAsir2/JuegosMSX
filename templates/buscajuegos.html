@@ -8,6 +8,7 @@
         <input type="text" name="cadena" value="{{nombre}}" autofocus/>
         <select name="Categoria">
             {% for cat in categoria %}
+            <!--Mejora 4: Recuerda la opción de Categoria-->>
             <option value="{{cat}}" selected="selected">{{cat.title()}}</option>
             {% endfor%}
         </select>
